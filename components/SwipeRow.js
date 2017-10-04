@@ -84,7 +84,7 @@ class SwipeRow extends Component {
 						.start(_ => {
 							this.getPreviewAnimation(0, PREVIEW_CLOSE_DELAY).start();
 						});
-				}, (this.props.disableLeftSwipe)?1300:0);
+				}, (this.props.disableLeftSwipe) ? 0 : 1300);
 			}
 		}
 	}
@@ -132,7 +132,7 @@ class SwipeRow extends Component {
 			this.horizontalSwipeGestureBegan = true;
 
 			let newDX = this.swipeInitialX + dx;
-			if (this.props.disableLeftSwipe  && newDX < 0) { newDX = 0; }
+			if (this.props.disableLeftSwipe && newDX < 0) { newDX = 0; }
 			if (this.props.disableRightSwipe && newDX > 0) { newDX = 0; }
 
 
@@ -220,7 +220,7 @@ class SwipeRow extends Component {
 		return (
 			<TouchableOpacity
 				activeOpacity={1}
-				onPress={ _ => this.onRowPress() }
+				onPress={_ => this.onRowPress()}
 			>
 				{this.props.children[1]}
 			</TouchableOpacity>
@@ -237,7 +237,7 @@ class SwipeRow extends Component {
 					{...this._panResponder.panHandlers}
 					style={{
 						transform: [
-							{translateX: this.state.translateX}
+							{ translateX: this.state.translateX }
 						]
 					}}
 				>
@@ -248,10 +248,10 @@ class SwipeRow extends Component {
 			return (
 				<Animated.View
 					{...this._panResponder.panHandlers}
-					onLayout={ (e) => this.onContentLayout(e) }
+					onLayout={(e) => this.onContentLayout(e)}
 					style={{
 						transform: [
-							{translateX: this.state.translateX}
+							{ translateX: this.state.translateX }
 						]
 					}}
 				>
