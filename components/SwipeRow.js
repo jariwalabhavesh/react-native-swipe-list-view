@@ -69,11 +69,23 @@ class SwipeRow extends Component {
 
 		if (this.props.preview && !this.ranPreview) {
 			this.ranPreview = true;
-			let previewOpenValue = this.props.previewOpenValue || this.props.rightOpenValue * 0.5;
-			this.getPreviewAnimation(previewOpenValue, PREVIEW_OPEN_DELAY)
-			.start( _ => {
-				this.getPreviewAnimation(0, PREVIEW_CLOSE_DELAY).start();
-			});
+			if (!this.props.disableLeftSwipe) {
+
+				let previewOpenValue = this.props.previewOpenValue || this.props.rightOpenValue * 0.5;
+				this.getPreviewAnimation(previewOpenValue, PREVIEW_OPEN_DELAY)
+					.start(_ => {
+						this.getPreviewAnimation(0, PREVIEW_CLOSE_DELAY).start();
+					});
+			}
+			if (!this.props.disableRightSwipe) {
+				let previewOpenValue1 = -(this.props.previewOpenValue) || this.props.rightOpenValue * 0.5;
+				setTimeout(() => {
+					this.getPreviewAnimation(previewOpenValue1, PREVIEW_OPEN_DELAY)
+						.start(_ => {
+							this.getPreviewAnimation(0, PREVIEW_CLOSE_DELAY).start();
+						});
+				}, (this.props.disableLeftSwipe)?1300:0);
+			}
 		}
 	}
 
